@@ -16,7 +16,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .container {
             text-align: center;
             max-width: 400px;
@@ -26,37 +26,40 @@
             border: 1px solid rgba(66, 133, 244, 0.3);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        
+
         .logo {
             font-size: 48px;
             margin-bottom: 20px;
         }
 
         .logo-image {
-            width: 10px;          /* tweak this size to match your logo */
-            height: 10px;         /* or remove height to keep aspect ratio */
+            width: 80px;      /* adjust size as you like */
+            height: 80px;
             object-fit: contain;
             display: block;
+            margin: 0 auto 20px;
+            border-radius: 12px;          /* makes corners curved */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
         }
-        
+
         h1 {
             color: #4285F4;
             margin-bottom: 10px;
             font-size: 28px;
         }
-        
+
         .subtitle {
             color: #888;
             margin-bottom: 30px;
             font-size: 16px;
         }
-        
+
         .loading {
             margin: 20px 0;
             font-size: 14px;
             color: #666;
         }
-        
+
         .app-button {
             background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
             color: white;
@@ -71,11 +74,11 @@
             display: inline-block;
             transition: transform 0.2s;
         }
-        
+
         .app-button:hover {
             transform: translateY(-2px);
         }
-        
+
         .fallback {
             margin-top: 30px;
             padding: 20px;
@@ -83,7 +86,7 @@
             border-radius: 10px;
             border: 1px solid rgba(66, 133, 244, 0.3);
         }
-        
+
         .spinner {
             border: 2px solid #333;
             border-top: 2px solid #4285F4;
@@ -93,12 +96,16 @@
             animation: spin 1s linear infinite;
             margin: 0 auto 10px;
         }
-        
+
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .hidden {
             display: none;
         }
@@ -113,12 +120,12 @@
         />
         <h1>Nerd Nudge</h1>
         <p class="subtitle">The Ultimate Tech Quiz Challenge</p>
-        
+
         <div id="loading" class="loading">
             <div class="spinner"></div>
             <div>Opening Nerd Nudge...</div>
         </div>
-        
+
         <div id="fallback" class="fallback hidden">
             <h3>Download Nerd Nudge</h3>
             <p>Join the tech quiz challenge and compete with friends!</p>
@@ -133,39 +140,39 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('user_id') || 'friend';
         }
-        
+
         // Detect if user is on iOS or Android
         function isIOS() {
             return /iPad|iPhone|iPod/.test(navigator.userAgent);
         }
-        
+
         function isAndroid() {
             return /Android/.test(navigator.userAgent);
         }
-        
+
         // Try to open the app
         function tryOpenApp() {
             const userId = getUserId();
             const deepLink = `nerdnudge://invite?user_id=${encodeURIComponent(userId)}`;
-            
+
             // Try to open the app
             window.location.href = deepLink;
-            
+
             // If app doesn't open within 2 seconds, show fallback
             setTimeout(() => {
                 showFallback();
             }, 2000);
         }
-        
+
         // Show app store buttons
         function showFallback() {
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('fallback').classList.remove('hidden');
-            
+
             // Set up app store buttons
             const appStoreButton = document.getElementById('appStoreButton');
             const playStoreButton = document.getElementById('playStoreButton');
-            
+
             if (isIOS()) {
                 appStoreButton.href = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
                 appStoreButton.style.display = 'inline-block';
@@ -182,14 +189,14 @@
                 playStoreButton.style.display = 'inline-block';
             }
         }
-        
+
         // Start the process when page loads
-        window.onload = function() {
+        window.onload = function () {
             tryOpenApp();
         };
-        
+
         // Handle page visibility change (app might have opened)
-        document.addEventListener('visibilitychange', function() {
+        document.addEventListener('visibilitychange', function () {
             if (document.hidden) {
                 // Page became hidden, app might have opened
                 console.log('App might have opened');
