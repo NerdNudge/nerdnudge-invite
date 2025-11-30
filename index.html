@@ -135,73 +135,33 @@
     </div>
 
     <script>
-        // Get user ID from URL parameters
-        function getUserId() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('user_id') || 'friend';
+    // Detect if user is on iOS or Android
+    function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent);
+    }
+
+    function isAndroid() {
+        return /Android/.test(navigator.userAgent);
+    }
+
+    function redirectToStore() {
+        // Store URLs
+        const APP_STORE_URL = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
+        const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.nerdnudge.app';
+
+        if (isAndroid()) {
+            // Android → Google Play
+            window.location.href = PLAY_STORE_URL;
+        } else {
+            // iOS and everything else → App Store (your default)
+            window.location.href = APP_STORE_URL;
         }
+    }
 
-        // Detect if user is on iOS or Android
-        function isIOS() {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent);
-        }
-
-        function isAndroid() {
-            return /Android/.test(navigator.userAgent);
-        }
-
-        // Try to open the app
-        function tryOpenApp() {
-            const userId = getUserId();
-            const deepLink = `nerdnudge://invite?user_id=${encodeURIComponent(userId)}`;
-
-            // Try to open the app
-            window.location.href = deepLink;
-
-            // If app doesn't open within 2 seconds, show fallback
-            setTimeout(() => {
-                showFallback();
-            }, 2000);
-        }
-
-        // Show app store buttons
-        function showFallback() {
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('fallback').classList.remove('hidden');
-
-            // Set up app store buttons
-            const appStoreButton = document.getElementById('appStoreButton');
-            const playStoreButton = document.getElementById('playStoreButton');
-
-            if (isIOS()) {
-                appStoreButton.href = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
-                appStoreButton.style.display = 'inline-block';
-                playStoreButton.style.display = 'none';
-            } else if (isAndroid()) {
-                playStoreButton.href = 'https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.nerdnudge.app';
-                playStoreButton.style.display = 'inline-block';
-                appStoreButton.style.display = 'none';
-            } else {
-                // Show both buttons for other platforms
-                appStoreButton.href = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
-                playStoreButton.href = 'https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.nerdnudge.app';
-                appStoreButton.style.display = 'inline-block';
-                playStoreButton.style.display = 'inline-block';
-            }
-        }
-
-        // Start the process when page loads
-        window.onload = function () {
-            tryOpenApp();
-        };
-
-        // Handle page visibility change (app might have opened)
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) {
-                // Page became hidden, app might have opened
-                console.log('App might have opened');
-            }
-        });
-    </script>
+    // Redirect as soon as the page loads
+    window.onload = function () {
+        redirectToStore();
+    };
+</script>
 </body>
 </html>
