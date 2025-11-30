@@ -4,32 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join Nerd Nudge - Tech Quiz Challenge</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --accent: #4285F4;
-            --accent-soft: rgba(66, 133, 244, 0.3);
-            --accent-secondary: #34A853;
-            --bg-dark: #0b0c10;
-            --bg-card: rgba(13, 17, 23, 0.94);
-            --text-muted: #9ca3af;
-            --text-soft: #6b7280;
-            --radius-lg: 24px;
-            --transition-fast: 150ms ease-out;
-        }
-
         body {
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background:
-                radial-gradient(circle at top left, rgba(66, 133, 244, 0.25), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(52, 168, 83, 0.22), transparent 55%),
-                linear-gradient(135deg, #050816 0%, #020617 50%, #050816 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
             margin: 0;
             padding: 20px;
@@ -38,313 +16,107 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         .container {
-            max-width: 420px;
-            width: 100%;
-            padding: 32px 24px 28px;
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            box-shadow:
-                0 18px 60px rgba(15, 23, 42, 0.7),
-                0 0 0 1px rgba(15, 23, 42, 0.9);
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            max-width: 400px;
+            padding: 40px 20px;
+            background: rgba(26, 26, 26, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(66, 133, 244, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-
-        .container::before {
-            content: "";
-            position: absolute;
-            inset: -1px;
-            border-radius: inherit;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(66,133,244,0.7), rgba(52,168,83,0.5));
-            mask:
-                linear-gradient(#000 0 0) content-box,
-                linear-gradient(#000 0 0);
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-
-        .logo-wrapper {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 64px;
-            height: 64px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 30% 20%, #ffffff, #bfdbfe 35%, #1e293b 100%);
-            box-shadow:
-                0 8px 25px rgba(59, 130, 246, 0.6),
-                0 0 0 1px rgba(15, 23, 42, 0.9);
-            margin-bottom: 16px;
-            transform: translateY(0);
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-        }
-
-        .logo-wrapper:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow:
-                0 12px 30px rgba(59, 130, 246, 0.8),
-                0 0 0 1px rgba(15, 23, 42, 1);
-        }
-
+        
         .logo {
-            font-size: 34px;
+            font-size: 48px;
+            margin-bottom: 20px;
         }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: rgba(15, 118, 110, 0.15);
-            border: 1px solid rgba(45, 212, 191, 0.4);
-            color: #a5f3fc;
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 10px;
-        }
-
-        .pill-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 8px #22c55e;
-        }
-
+        
         h1 {
-            color: #e5e7eb;
-            margin: 0 0 6px;
-            font-size: 26px;
-            letter-spacing: 0.02em;
+            color: #4285F4;
+            margin-bottom: 10px;
+            font-size: 28px;
         }
-
-        .tagline {
-            font-size: 13px;
-            color: var(--text-soft);
-            margin-bottom: 18px;
-        }
-
+        
         .subtitle {
-            color: var(--text-muted);
-            margin: 0 auto 26px;
-            font-size: 14px;
-            line-height: 1.5;
-            max-width: 320px;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 16px;
         }
-
-        .subtitle strong {
-            color: #e5e7eb;
-            font-weight: 600;
-        }
-
+        
         .loading {
-            margin: 18px 0 6px;
-            font-size: 13px;
-            color: var(--text-soft);
+            margin: 20px 0;
+            font-size: 14px;
+            color: #666;
         }
-
-        .loading-text {
-            margin-top: 6px;
+        
+        .app-button {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
         }
-
-        .loading-text span.dots::after {
-            content: "...";
-            animation: dots 1.2s steps(4, end) infinite;
+        
+        .app-button:hover {
+            transform: translateY(-2px);
         }
-
-        @keyframes dots {
-            0%, 20% { content: ""; }
-            40% { content: "."; }
-            60% { content: ".."; }
-            80%, 100% { content: "..."; }
+        
+        .fallback {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(66, 133, 244, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(66, 133, 244, 0.3);
         }
-
+        
         .spinner {
-            border: 2px solid rgba(31, 41, 55, 0.9);
-            border-top: 2px solid var(--accent);
+            border: 2px solid #333;
+            border-top: 2px solid #4285F4;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            animation: spin 0.9s linear infinite;
-            margin: 0 auto 2px;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
         }
-
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        .hint {
-            font-size: 11px;
-            color: var(--text-soft);
-            margin-top: 10px;
-        }
-
-        .hint span {
-            color: #c4b5fd;
-        }
-
-        .fallback {
-            margin-top: 12px;
-            padding: 18px 14px 16px;
-            background: radial-gradient(circle at top, rgba(37, 99, 235, 0.2), rgba(15, 23, 42, 0.95));
-            border-radius: 18px;
-            border: 1px solid var(--accent-soft);
-            text-align: left;
-        }
-
-        .fallback h3 {
-            margin: 0 0 6px;
-            font-size: 15px;
-            color: #e5e7eb;
-        }
-
-        .fallback p {
-            margin: 0 0 14px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .store-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .app-button {
-            background: radial-gradient(circle at top left, var(--accent) 0%, var(--accent-secondary) 80%);
-            color: white;
-            border: none;
-            padding: 11px 16px;
-            border-radius: 999px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            flex: 1 1 140px;
-            min-width: 0;
-            gap: 6px;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.55);
-            transition:
-                transform var(--transition-fast),
-                box-shadow var(--transition-fast),
-                filter var(--transition-fast);
-            white-space: nowrap;
-        }
-
-        .app-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.8);
-            filter: brightness(1.03);
-        }
-
-        .app-button:active {
-            transform: translateY(0);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.6);
-        }
-
-        .app-button span.label {
-            font-weight: 500;
-        }
-
-        .app-button span.platform {
-            font-size: 11px;
-            opacity: 0.9;
-        }
-
-        .footer-note {
-            margin-top: 18px;
-            font-size: 11px;
-            color: var(--text-soft);
-        }
-
-        .footer-note strong {
-            color: #e5e7eb;
-        }
-
+        
         .hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 26px 18px 22px;
-                border-radius: 20px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-
-            .subtitle {
-                font-size: 13px;
-            }
-
-            .store-buttons {
-                flex-direction: column;
-            }
-
-            .app-button {
-                width: 100%;
-            }
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="pill">
-            <span class="pill-dot"></span>
-            Invite to tech quiz challenge
-        </div>
-
-        <div class="logo-wrapper">
-            <div class="logo">🧠</div>
-        </div>
-
+        <img
+            src="NerdNudgeLogo - blackish Background.png"
+            alt="Nerd Nudge logo"
+            class="logo-image"
+        />
         <h1>Nerd Nudge</h1>
-        <div class="tagline">Daily brain-boost for tech nerds.</div>
-        <p class="subtitle">
-            Jump into <strong>bite-sized quizzes</strong>, track your streaks, and compete with friends on global leaderboards.
-        </p>
-
+        <p class="subtitle">The Ultimate Tech Quiz Challenge</p>
+        
         <div id="loading" class="loading">
             <div class="spinner"></div>
-            <div class="loading-text">
-                Opening the app <span class="dots"></span>
-            </div>
-            <div class="hint">
-                If nothing happens in a couple of seconds, grab the app from your store below. <span>It’s free.</span>
-            </div>
+            <div>Opening Nerd Nudge...</div>
         </div>
-
+        
         <div id="fallback" class="fallback hidden">
-            <h3>Get Nerd Nudge on your device</h3>
-            <p>Install the app to accept your invite and start playing tech quizzes anytime, anywhere.</p>
-            <div class="store-buttons">
-                <a href="#" id="appStoreButton" class="app-button">
-                    <span class="label">Download for iOS</span>
-                    <span class="platform">App Store</span>
-                </a>
-                <a href="#" id="playStoreButton" class="app-button">
-                    <span class="label">Download for Android</span>
-                    <span class="platform">Google Play</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="footer-note">
-            Built for <strong>developers, students</strong> &amp; curious minds.
+            <h3>Download Nerd Nudge</h3>
+            <p>Join the tech quiz challenge and compete with friends!</p>
+            <a href="#" id="appStoreButton" class="app-button">Download for iOS</a>
+            <a href="#" id="playStoreButton" class="app-button">Download for Android</a>
         </div>
     </div>
 
@@ -389,18 +161,18 @@
             
             if (isIOS()) {
                 appStoreButton.href = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
-                appStoreButton.style.display = 'inline-flex';
+                appStoreButton.style.display = 'inline-block';
                 playStoreButton.style.display = 'none';
             } else if (isAndroid()) {
                 playStoreButton.href = 'https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.nerdnudge.app';
-                playStoreButton.style.display = 'inline-flex';
+                playStoreButton.style.display = 'inline-block';
                 appStoreButton.style.display = 'none';
             } else {
                 // Show both buttons for other platforms
                 appStoreButton.href = 'https://apps.apple.com/app/nerd-nudge/id6686398792';
                 playStoreButton.href = 'https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.nerdnudge.app';
-                appStoreButton.style.display = 'inline-flex';
-                playStoreButton.style.display = 'inline-flex';
+                appStoreButton.style.display = 'inline-block';
+                playStoreButton.style.display = 'inline-block';
             }
         }
         
